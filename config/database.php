@@ -90,6 +90,18 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
         ],
+        'sqlsrv2' => [
+            'driver' => 'sqlsrv',
+            'url' => env('SECOND_DATABASE_URL'), // You can set a separate URL for the second database
+            'host' => env('SECOND_DB_HOST'),
+            'port' => env('SECOND_DB_PORT'),
+            'database' => env('SECOND_DB_DATABASE'), // Set a different database name
+            'username' => env('SECOND_DB_USERNAME'),
+            'password' => env('SECOND_DB_PASSWORD'),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
 
     ],
 
@@ -123,7 +135,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [

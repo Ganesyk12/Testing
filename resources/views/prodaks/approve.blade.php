@@ -104,7 +104,7 @@
                        <div class="col-md-6">
                            <div class="row mb-3">
                                <div class="col-md-6">
-                                   <label for="shiftt" class="form-control" style="font-size: 15px; text-align: center">Shiftt</label>
+                                   <label for="shiftt" class="form-control" style="font-size: 15px; text-align: center">Shift</label>
                                </div>
                                <div class="col-md-6">
                                    <div class="form-check form-check-inline">
@@ -264,14 +264,16 @@
                    <!-- HANCHOU -->
                    <div class="row g-3">
                        <div class="col-md-3" style="font-size: 15px; text-align: center">
-                           @if ($role == 'hanchou')
+                           @if ($role == 'MFG Hanchou')
                            <label class="form-label">Nama Hanchou</label>
-                           @elseif ($role == 'kakaricho')
+                           @elseif ($role == 'MFG Spv')
                            <label class="form-label">Nama Kakaricho</label>
-                           @elseif ($role == 'mng_mfg')
+                           @elseif ($role == 'MFG Mgr')
                            <label class="form-label">Nama Manager Manufacturing</label>
-                           @elseif ($role == 'gm')
-                           <label class="form-label">Nama General manager</label>
+                           @elseif ($role == 'MFG Qc')
+                           <label class="form-label">Nama Manager Qc</label>
+                           @elseif ($role == 'GM MFG')
+                           <label class="form-label">Nama GM Manufacturing</label>
                            @endif
                        </div>
                        <div class="col-md-4">
@@ -300,14 +302,14 @@
                                <input type="text" class="form-control" id="name" placeholder="{{ auth()->user()->name }}" disabled />
                            </div>
                        </div>
-                   @if($role == 'kakaricho')
+                   @if($role == 'MFG Spv')
                    <div class="col-md-3">
                        <div class="form-check form-check-inline" hidden>
                            <input class="form-check-input" type="radio" id="status_active" name="uup_status" value="active" checked>
                            <label class="form-check-label" for="status_active" >active</label>
                        </div>
                    </div>
-                   @elseif ($role == 'mng_mfg')
+                   @elseif ($role == 'MFG Mgr')
                    <div class="col-md-3">
                        <div class="form-check form-check-inline" hidden>
                            <input class="form-check-input" type="radio" id="status_mng_mfg_active" name="uup_status_mng_mfg" value="active" checked>
@@ -320,7 +322,7 @@
                            <label class="form-check-label" for="status_active">active</label>
                        </div>
                    </div>
-                   @elseif ($role == 'mng_qc')
+                   @elseif ($role == 'MFG Qc')
                        <div class="col-md-3">
                            <div class="form-check form-check-inline" hidden>
                                <input class="form-check-input" type="radio" id="status_mng_mfg_active" name="uup_status_mng_mfg" value="active" checked>
@@ -339,7 +341,7 @@
                                <label class="form-check-label" for="status_mng_qc_active">active_qc</label>
                            </div>
                        </div>
-                   @elseif ($role == 'gm')
+                   @elseif ($role == 'GM MFG')
                    <div class="col-md-3">
                            <div class="form-check form-check-inline" hidden>
                                <input class="form-check-input" type="radio" id="status_mng_mfg_active" name="uup_status_mng_mfg" value="active" checked>
@@ -379,28 +381,28 @@
                        </div>
                    <div class="container mt-2">
                        <div class="row mb-3">
-                   @if($role == 'mng_mfg')
+                   @if($role == 'MFG Mgr')
                        <div class="col-md-3">
                            <label for="uup_reject_mng_mfg" class="form-control" style="font-size: 15px; text-align: center" >Reject Manager MFG</label>
                        </div>
                        <div class="col-md-9">
                            <input type="text" class="form-control" name="uup_reject_mng_mfg" id="uup_reject_mng_mfg" style="text-align: center" required />
                        </div>
-                   @elseif($role == 'kakaricho')
+                   @elseif($role == 'MFG Spv')
                        <div class="col-md-3">
                            <label for="uup_reject_kakaricho" class="form-control" style="font-size: 15px; text-align: center">Reject Kakaricho</label>
                        </div>
                        <div class="col-md-9">
                            <input type="text" class="form-control" name="uup_reject_kakaricho" id="uup_reject_kakaricho" style="text-align: center" required />
                        </div>
-                   @elseif($role == 'mng_qc')
+                   @elseif($role == 'MFG Qc')
                        <div class="col-md-3">
                            <label for="uup_reject_mng_qc" class="form-control" style="font-size: 15px; text-align: center">Reject mng_qc</label>
                        </div>
                        <div class="col-md-9">
                            <input type="text" class="form-control" name="uup_reject_mng_qc" id="uup_reject_mng_qc" style="text-align: center" required />
                        </div>
-                   @elseif ($role = 'gm')
+                   @elseif ($role = 'GM MFG')
                        <div class="col-md-3">
                            <label for="uup_reject_gm" class="form-control" style="font-size: 15px; text-align: center">Reject GM</label>
                        </div>

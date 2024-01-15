@@ -2,43 +2,54 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model implements Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    use HasFactory;
+    protected $connection = 'sqlsrv2';
     protected $fillable = [
         'name',
         'email',
-        'password',
+        'password'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    public function hakAksesLines()
+    {
+        return $this->belongsToMany(Lines::class, 'user_lines', 'user_id', 'line_id');
+    }
+    // The methods to be implemented from Authenticatable interface
+    public function getAuthIdentifierName()
+    {
+        return 'id';
+    }
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function getAuthIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
+
+    public function getRememberToken()
+    {
+        return $this->remember_token;
+    }
+
+    public function setRememberToken($value)
+    {
+        $this->remember_token = $value;
+    }
+
+    public function getRememberTokenName()
+    {
+        return 'remember_token';
+    }
+
+    // Additional methods and properties for your User model
 }
